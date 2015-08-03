@@ -1,13 +1,13 @@
 {
-  "name": "gulp_coffee",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "gulp coffee project",
+  "version": "0.0.1",
+  "description": "template gulp config in coffee script",
+  "main": "index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "vaeum",
+  "license": "MIT",
   "devDependencies": {
     "browser-sync": "^2.8.2",
     "coffee-script": "^1.9.3",
