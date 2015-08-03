@@ -1,25 +1,25 @@
-gulp = require('gulp')
+gulp         = require('gulp')
 
 # browser refresh
-browserSync = require('browser-sync').create()
+browserSync  = require('browser-sync').create()
 
 # css compile
-sass = require('gulp-sass')
+sass         = require('gulp-sass')
 autoprefixer = require('gulp-autoprefixer')
-csso = require('gulp-csso')
-csscomb = require('gulp-csscomb')
-cssbeautify = require('gulp-cssbeautify')
-cmq = require('gulp-combine-media-queries')
+csso         = require('gulp-csso')
+csscomb      = require('gulp-csscomb')
+cssbeautify  = require('gulp-cssbeautify')
+cmq          = require('gulp-combine-media-queries')
 
 # html compile
-jade = require('gulp-jade')
+jade         = require('gulp-jade')
 HTMLprettify = require('gulp-html-prettify')
 
 # js compile
-coffee = require('gulp-coffee')
-rjs = require('gulp-requirejs')
-uglify = require('gulp-uglify')
-clean = require('gulp-clean')
+coffee       = require('gulp-coffee')
+rjs          = require('gulp-requirejs')
+uglify       = require('gulp-uglify')
+clean        = require('gulp-clean')
 
 # -----------------------------------
 #   project variables
