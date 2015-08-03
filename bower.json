@@ -1,5 +1,5 @@
 {
-  "name": "gulp coffee project",
+  "name": "gulp_coffee_project",
   "version": "0.0.1",
   "dependencies": {
     "almond": "~0.3.1"
