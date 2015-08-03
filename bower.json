@@ -1,17 +1,6 @@
 {
-  "name": "gulp_coffee",
-  "version": "0.0.0",
-  "authors": [
-    "Alexander Anpleenko <vaeum@mail.ru>"
-  ],
-  "license": "MIT",
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
-  ],
+  "name": "gulp coffee project",
+  "version": "0.0.1",
   "dependencies": {
     "almond": "~0.3.1"
   }
