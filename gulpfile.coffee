@@ -1,13 +1,47 @@
 gulp = require('gulp')
-jade = require('gulp-jade')
-sass = require('gulp-sass')
+
+# browser refresh
 browserSync = require('browser-sync').create()
+
+# css compile
+sass = require('gulp-sass')
+autoprefixer = require('gulp-autoprefixer')
+csso = require('gulp-csso')
+csscomb = require('gulp-csscomb')
+cssbeautify = require('gulp-cssbeautify')
+cmq = require('gulp-combine-media-queries')
+
+# html compile
+jade = require('gulp-jade')
+HTMLprettify = require('gulp-html-prettify')
 
 # js compile
 coffee = require('gulp-coffee')
 rjs = require('gulp-requirejs')
 uglify = require('gulp-uglify')
 clean = require('gulp-clean')
+
+# -----------------------------------
+#   project variables
+# -----------------------------------
+
+AUTOPREFIXER_CONFIG =
+  browsers: ['ie >= 8', 'last 3 versions', '> 2%']
+  cascade: no
+
+CSSBEAUTIFY_CONFIG =
+  autosemicolon: on
+
+SASS_CONFIG =
+  outputStyle: 'nested'
+
+HTMLPRETTIFY_CONFIG =
+  indent_char: '  '
+  indent_size: 2
+
+# -----------------------------------
+#   gulp tasks
+# -----------------------------------
 
 gulp.task 'server', ['scss', 'jade'], ->
   browserSync.init
@@ -19,18 +53,24 @@ gulp.task 'server', ['scss', 'jade'], ->
   gulp.watch 'coffee/**/*.coffee', ['build']
 
 gulp.task 'scss', ->
-  gulp.src 'scss/**/*.scss'
-    .pipe sass
-      outputStyle: 'nested'
+  gulp.src 'scss/**/!(_)*.scss'
+    .pipe sass SASS_CONFIG
     .on 'error', sass.logError
+    .pipe autoprefixer AUTOPREFIXER_CONFIG
+    .pipe do cmq
+    .pipe do csso
+    .pipe cssbeautify CSSBEAUTIFY_CONFIG
+    .pipe do csscomb
     .pipe gulp.dest 'build/css'
     .pipe browserSync.stream()
 
 gulp.task 'jade', ->
-  gulp.src 'jade/**/*.jade'
+  gulp.src './jade/**/!(_)*.jade'
     .pipe do jade
+    .on 'error', console.log
+    .pipe HTMLprettify HTMLPRETTIFY_CONFIG
     .pipe gulp.dest 'build'
-    .pipe browserSync.stream()
+    .on 'end', browserSync.reload
 
 gulp.task 'build', ['coffee'], ->
   rjs

@@ -1,2 +1,2 @@
 define ['extra'], (extra) ->
-  console.log  "askdhaksdh: #{extra}"
+  console.log  "Module: #{extra}"

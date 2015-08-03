@@ -1,2 +1,2 @@
 define [], ->
-  'tetttttttt'
+  'extra.coffee'
