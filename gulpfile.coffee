@@ -39,14 +39,6 @@ HTML_PRETTIFY_CONFIG =
   indent_char: '  '
   indent_size: 2
 
-REQUIRE_JS_CONFIG =
-  baseUrl: 'js'
-  name: '../bower_components/almond/almond'
-  include: ['main']
-  insertRequire: ['main']
-  out: 'all.js'
-  wrap: on
-
 # -----------------------------------
 #   gulp tasks
 # -----------------------------------
@@ -82,7 +74,13 @@ gulp.task 'jade', ->
     .on 'end', browserSync.reload
 
 gulp.task 'build', ['coffee'], ->
-  rjs REQUIRE_JS_CONFIG
+  rjs
+    baseUrl: 'js'
+    name: '../bower_components/almond/almond'
+    include: ['main']
+    insertRequire: ['main']
+    out: 'all.js'
+    wrap: on
   .pipe do uglify
   .pipe gulp.dest 'build/js'
   .pipe browserSync.stream()
