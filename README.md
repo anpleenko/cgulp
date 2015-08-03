@@ -9,10 +9,10 @@
  * JADE compilation
 
 ##### To run the project, install the following tools
- * [node js](https://nodejs.org/) for Markdown parsing
- * [git](https://git-scm.com/) for Markdown parsing
- * [gulp](http://gulpjs.com/) for Markdown parsing
- * [bower](http://bower.io/) for Markdown parsing
+ * [node js](https://nodejs.org/)
+ * [git](https://git-scm.com/)
+ * [gulp](http://gulpjs.com/)
+ * [bower](http://bower.io/)
 
 ##### Commands for install tools
 gulp
