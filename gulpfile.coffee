@@ -29,15 +29,23 @@ AUTOPREFIXER_CONFIG =
   browsers: ['ie >= 8', 'last 3 versions', '> 2%']
   cascade: no
 
-CSSBEAUTIFY_CONFIG =
+CSS_BEAUTIFY_CONFIG =
   autosemicolon: on
 
 SASS_CONFIG =
   outputStyle: 'nested'
 
-HTMLPRETTIFY_CONFIG =
+HTML_PRETTIFY_CONFIG =
   indent_char: '  '
   indent_size: 2
+
+REQUIRE_JS_CONFIG =
+  baseUrl: 'js'
+  name: '../bower_components/almond/almond'
+  include: ['main']
+  insertRequire: ['main']
+  out: 'all.js'
+  wrap: on
 
 # -----------------------------------
 #   gulp tasks
@@ -48,6 +56,7 @@ gulp.task 'server', ['scss', 'jade'], ->
     server: './build'
     open: false
 
+  # gulp watch tack
   gulp.watch 'jade/**/*.jade', ['jade']
   gulp.watch 'scss/**/*.scss', ['scss']
   gulp.watch 'coffee/**/*.coffee', ['build']
@@ -59,7 +68,7 @@ gulp.task 'scss', ->
     .pipe autoprefixer AUTOPREFIXER_CONFIG
     .pipe do cmq
     .pipe do csso
-    .pipe cssbeautify CSSBEAUTIFY_CONFIG
+    .pipe cssbeautify CSS_BEAUTIFY_CONFIG
     .pipe do csscomb
     .pipe gulp.dest 'build/css'
     .pipe browserSync.stream()
@@ -68,18 +77,12 @@ gulp.task 'jade', ->
   gulp.src './jade/**/!(_)*.jade'
     .pipe do jade
     .on 'error', console.log
-    .pipe HTMLprettify HTMLPRETTIFY_CONFIG
+    .pipe HTMLprettify HTML_PRETTIFY_CONFIG
     .pipe gulp.dest 'build'
     .on 'end', browserSync.reload
 
 gulp.task 'build', ['coffee'], ->
-  rjs
-    baseUrl: 'js'
-    name: '../bower_components/almond/almond'
-    include: ['main']
-    insertRequire: ['main']
-    out: 'all.js'
-    wrap: on
+  rjs REQUIRE_JS_CONFIG
   .pipe do uglify
   .pipe gulp.dest 'build/js'
   .pipe browserSync.stream()
