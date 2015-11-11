@@ -1,36 +1,29 @@
-gulp         = require('gulp')
+gulp          = require('gulp')
 
 # browser refresh
-browserSync  = require('browser-sync').create()
+browserSync   = require('browser-sync').create()
 
 # css compile
-sass         = require('gulp-sass')
-autoprefixer = require('gulp-autoprefixer')
-csso         = require('gulp-csso')
-csscomb      = require('gulp-csscomb')
-cssbeautify  = require('gulp-cssbeautify')
-cmq          = require('gulp-combine-media-queries')
+sass          = require('gulp-sass')
+postcss       = require('gulp-postcss')
+perfectionist = require('perfectionist')
+autoprefixer  = require('autoprefixer')
+mqpacker      = require('css-mqpacker')
+csso          = require('gulp-csso')
 
 # html compile
-jade         = require('gulp-jade')
-HTMLprettify = require('gulp-html-prettify')
+jade          = require('gulp-jade')
+HTMLprettify  = require('gulp-html-prettify')
 
 # js compile
-coffee       = require('gulp-coffee')
-rjs          = require('gulp-requirejs')
-uglify       = require('gulp-uglify')
-clean        = require('gulp-clean')
+coffee        = require('gulp-coffee')
+rjs           = require('gulp-requirejs')
+uglify        = require('gulp-uglify')
+clean         = require('gulp-clean')
 
 # -----------------------------------
 #   project variables
 # -----------------------------------
-
-AUTOPREFIXER_CONFIG =
-  browsers: ['ie >= 8', 'last 3 versions', '> 2%']
-  cascade: no
-
-CSS_BEAUTIFY_CONFIG =
-  autosemicolon: on
 
 SASS_CONFIG =
   outputStyle: 'nested'
@@ -38,6 +31,12 @@ SASS_CONFIG =
 HTML_PRETTIFY_CONFIG =
   indent_char: '  '
   indent_size: 2
+
+PROCESSORS = [
+  mqpacker,
+  autoprefixer,
+  perfectionist
+]
 
 # -----------------------------------
 #   gulp tasks
@@ -51,17 +50,14 @@ gulp.task 'server', ['scss', 'jade'], ->
   # gulp watch tack
   gulp.watch 'jade/**/*.jade', ['jade']
   gulp.watch 'scss/**/*.scss', ['scss']
-  gulp.watch 'coffee/**/*.coffee', ['app']
+  gulp.watch 'coffee/**/*.coffee', ['build']
 
 gulp.task 'scss', ->
   gulp.src 'scss/**/!(_)*.scss'
     .pipe sass SASS_CONFIG
     .on 'error', sass.logError
-    .pipe autoprefixer AUTOPREFIXER_CONFIG
-    .pipe do cmq
     .pipe do csso
-    .pipe cssbeautify CSS_BEAUTIFY_CONFIG
-    .pipe do csscomb
+    .pipe postcss PROCESSORS
     .pipe gulp.dest 'app/css'
     .pipe browserSync.stream()
 
