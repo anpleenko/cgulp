@@ -16,15 +16,18 @@
 
 ##### Commands for install tools
 gulp
+
 ```
 npm install -g gulp
 ```
 bower
+
 ```
 npm install -g bower
 ```
 
 ##### Commands for init project
+
 ```
 git clone https://github.com/vaeum/cgulp.git
 cd cgulp
@@ -33,5 +36,7 @@ bower install
 ```
 
 ##### Commands for run project
+
 ```
 gulp --require coffee-script/register
+```
