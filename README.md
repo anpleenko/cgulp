@@ -38,5 +38,7 @@ bower install
 ##### Commands for run project
 
 ```
-gulp --require coffee-script/register
+gulp
 ```
+
+And open your browser [http://localhost:3000](http://localhost:3000)
