@@ -2,25 +2,25 @@
 
 ### Coffee script gulp config template
 
-###### Basic useful feature list:
- * coffee script compilation
- * SASS compilation (**scss** syntax)
- * Require JS support
- * JADE compilation
+##### Basic useful feature list:
+ - Сoffee script compilation
+ - SASS compilation (**scss** syntax)
+ - Require JS support
+ - JADE compilation
 
 ##### To run the project, install the following tools
- * [node js](https://nodejs.org/)
- * [git](https://git-scm.com/)
- * [gulp](http://gulpjs.com/)
- * [bower](http://bower.io/)
+ - [Node js](https://nodejs.org/)
+ - [GIT](https://git-scm.com/)
+ - [Gulp](http://gulpjs.com/)
+ - [Bower](http://bower.io/)
 
 ##### Commands for install tools
-gulp
+Gulp
 
 ```
 npm install -g gulp
 ```
-bower
+Bower
 
 ```
 npm install -g bower
