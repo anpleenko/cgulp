@@ -1,5 +1,7 @@
 # cgulp
 
+[![Build Status](https://travis-ci.org/vaeum/cgulp.svg?branch=master)](https://travis-ci.org/vaeum/cgulp)
+
 ### Coffee script gulp config template
 
 ##### Basic useful feature list:
